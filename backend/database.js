@@ -3,26 +3,31 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import path from 'path'
- 
 
 dotenv.config();
 
 import productRouter from './routes/productRoutes.js'
 
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Updated CORS configuration
+app.use(cors({
+  origin: [
+    'https://github-acations.vercel.app',
+    'http://localhost:3000',
+    'http://localhost:5173'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
 
 app.use('/api/products', productRouter);
 
@@ -34,7 +39,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/productdb
 .catch((error) => {
   console.error('MongoDB connection error:', error);
 });
-
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

@@ -55,5 +55,5 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         with:
-          service: "backend" # <-- Replace with your Railway service name
+          service: "GithubAcations" # <-- Replace with your Railway service name
           detach: false

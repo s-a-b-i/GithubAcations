@@ -1,4 +1,4 @@
-name: MERN Stack CI/CD
+name: MERN  CI/CD
 
 on:
   push:

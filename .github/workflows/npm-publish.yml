@@ -48,8 +48,7 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          working-directory: ./frontend
-
+          
       - name: Deploy Backend to Railway
         uses: bervProject/railway-deploy@main
         env:

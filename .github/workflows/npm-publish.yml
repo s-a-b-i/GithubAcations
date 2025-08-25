@@ -1,4 +1,4 @@
-name: MERN  CI/CD
+name: MERN Stack CI/CD
 
 on:
   push:
@@ -43,10 +43,11 @@ jobs:
         npm run lint
     
     - name: Deploy Frontend to Vercel
-      uses: amondnet/vercel-action@v25
+      uses: amondnet/vercel-action@v20
       with:
         vercel-token: ${{ secrets.VERCEL_TOKEN }}
         vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
         working-directory: ./frontend
     
     - name: Deploy Backend to Railway

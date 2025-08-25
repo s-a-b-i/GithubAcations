@@ -1,4 +1,4 @@
-name: MERN STACK CI/CD
+name: MERN CI/CD
 
 on:
   push:
@@ -53,8 +53,7 @@ jobs:
     - name: Deploy Backend to Railway
       run: |
         npm install -g @railway/cli
-        railway login --token ${{ secrets.RAILWAY_TOKEN }}
         cd backend
-        railway up --service GithubAction
+        railway up
       env:
         RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}

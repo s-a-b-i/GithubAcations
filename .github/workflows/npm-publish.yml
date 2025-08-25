@@ -1,4 +1,4 @@
-name: MERN  CI/CD
+name: MERN CI/CD
 
 on:
   push:
@@ -51,7 +51,10 @@ jobs:
         working-directory: ./frontend
     
     - name: Deploy Backend to Railway
-      uses: bervProject/railway-deploy@main
-      with:
-        railway_token: ${{ secrets.RAILWAY_TOKEN }}
-        service: "GithubAction"
+      run: |
+        npm install -g @railway/cli
+        railway login --token ${{ secrets.RAILWAY_TOKEN }}
+        cd backend
+        railway up --service GithubAction
+      env:
+        RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}

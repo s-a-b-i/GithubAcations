@@ -52,8 +52,8 @@ jobs:
     
     - name: Deploy Backend to Railway
       run: |
-        npm install -g @railway/cli
+        curl -fsSL https://railway.app/install.sh | sh
         cd backend
-        railway up
+        railway up --service GithubAction
       env:
         RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
